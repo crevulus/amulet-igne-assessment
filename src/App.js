@@ -1,25 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import "bootswatch/dist/lux/bootstrap.min.css";
+import "./App.css";
+
+import Inputform from "./components/Inputform";
+import Infotable from "./components/Infotable";
+import Photowidget from "./components/Photowidget";
+
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchData: "",
+      brand: "",
+      tradeName: "",
+      firstAdmissionDate: "",
+      fuelType: "",
+    };
+  }
+
+  handleChildSubmit = (data) => {
+    this.setState({
+      searchData: data,
+      brand: data.merk,
+      tradeName: data.handelsbenaming,
+      firstAdmissionDate: data.datum_eerste_toelating,
+      fuelType: data.brandstof[0].brandstof_omschrijving,
+    });
+  };
+
+  render() {
+    return (
+      <div className="App">
+        <Inputform handleNumberPlateCall={this.handleChildSubmit} />
+        {this.state.searchData && (
+          <div>
+            <Infotable
+              brand={this.state.brand}
+              tradeName={this.state.tradeName}
+              firstAdmissionDate={this.state.firstAdmissionDate}
+              fuelType={this.state.fuelType}
+            />
+            <Photowidget
+              brand={this.state.brand}
+              tradeName={this.state.tradeName}
+            />
+          </div>
+        )}
+      </div>
+    );
+  }
 }
-
-export default App;
