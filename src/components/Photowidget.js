@@ -40,7 +40,6 @@ export default class Photowidget extends Component {
   render() {
     return (
       <div>
-        <h3>Is this the car you're looking for?</h3>
         {this.state.photoData && (
           <ImageCarousel data={this.state.photoData.results} />
         )}

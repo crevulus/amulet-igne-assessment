@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Inputform extends Component {
+export default class InputForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,9 +30,9 @@ export default class Inputform extends Component {
   render() {
     return (
       <div>
-        <h1>Please enter your license plate number</h1>
+        <h1 className="please-enter">Please enter your license plate number</h1>
         <div className="form-group">
-          <form>
+          <form className="input-and-button">
             <input
               type="text"
               className="form-control"
